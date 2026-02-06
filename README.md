@@ -11,7 +11,7 @@ This method addresses the "active but unmeasured" loading problem, enabling real
 ## Key Features
 * **Data-Driven:** No prior knowledge of mass/stiffness matrices required.
 * **Physics-Interpretable:** Extracts explicit spectral properties (eigenvalues/modes) of the system.
-* **Robust:** Validated against high-fidelity OpenFAST simulations (NREL 5MW + OC3 Hywind).
+* **Robust:** Validated against high-fidelity OpenFAST simulations (NREL 5MW).
 
 ## Code Availability
 The full source code and datasets for this project are currently under embargo pending the peer-review process of the associated journal publication. 
