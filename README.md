@@ -19,8 +19,7 @@ The full source code and datasets for this project are currently under embargo p
 **The complete codebase will be released here under the MIT License immediately upon acceptance of the paper.**
 
 ## Citation
-If you are interested in this work, please refer to our upcoming presentation:
-> **Abaei, M. M., et al.** "Physics-Interpretable Digital Twin for Floating Offshore Wind Turbines via Hankel-DMD." *EUROMECH Colloquium 662*, Como, Italy, 2026.
+--
 
 ## Contact
 For inquiries or early access for collaboration, please contact:
