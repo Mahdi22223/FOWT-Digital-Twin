@@ -24,4 +24,4 @@ The full source code and datasets for this project are currently under embargo p
 ## Contact
 For inquiries or early access for collaboration, please contact:
 **Dr. Mohammad Mahdi Abaei** Academy Research Fellow, Aalto University  
-[Email Address]
+[Email Address] mohammad.abaei@aalto.fi
