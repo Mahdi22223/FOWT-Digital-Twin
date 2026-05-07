@@ -1,7 +1,7 @@
 # Physics-Interpretable Digital Twin for Floating Offshore Wind Turbines (FOWT)
 
 **Author:** Dr. Mohammad Mahdi Abaei (Aalto University)
-**Status:** 🚀 Pre-release (Manuscript under preparation for RESS/MSSP)
+**Status:** 🚀 Pre-release (Manuscript under preparation for MSSP, arXiv version is availble in bellow link)
 
 ## Overview
 This repository contains the implementation of a **Physics-Interpretable Digital Twin** framework for FOWT. The approach utilizes **Rank-Optimized Hankel-Dynamic Mode Decomposition (Hankel-DMD)** to decouple structural dynamics from stochastic environmental loads (waves/wind).
