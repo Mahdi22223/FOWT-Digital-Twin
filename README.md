@@ -19,7 +19,15 @@ The full source code and datasets for this project are currently under embargo p
 **The complete codebase will be released here under the MIT License immediately upon acceptance of the paper.**
 
 ## Citation
---
+@misc{abaei2026equationfreedigitaltwinsnonlinear,
+      title={Equation-Free Digital Twins for Nonlinear Structural Dynamics}, 
+      author={Mohammad Mahdi Abaei and Ahmad BahooToroody and Arttu Polojärvi and Heikki Remes and Ulf Tyge Tygesen and Mikko Suominen and Michael Beer},
+      year={2026},
+      eprint={2605.00950},
+      archivePrefix={arXiv},
+      primaryClass={eess.SP},
+      url={https://arxiv.org/abs/2605.00950}, 
+}
 
 ## Contact
 For inquiries or early access for collaboration, please contact:
