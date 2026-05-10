@@ -1,5 +1,4 @@
-# Equation-Free Digital Twins for Nonlinear Structural Dynamics
-## Concept at a glance
+# Equation-Free Digital Twins for Offshore Floating Wind Turbines
 
 <p align="center">
   <img src="assets/figure_2_concept.png" width="850">
