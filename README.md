@@ -1,5 +1,33 @@
 # Equation-Free Digital Twins for Nonlinear Structural Dynamics
+## Concept at a glance
 
+<p align="center">
+  <img src="assets/figure_2_concept.png" width="850">
+</p>
+
+<p align="center">
+  <b>Equation-free digital twin workflow for nonlinear floating offshore wind turbine dynamics.</b>
+</p>
+
+## Live demonstration
+
+<p align="center">
+  <img src="assets/digital_twin_demo.gif" width="850">
+</p>
+
+<p align="center">
+  <b>Time-resolved Hankel-DMD reconstruction and virtual sensing demonstration.</b>
+</p>
+
+## Missing/failed sensor reconstruction
+
+<p align="center">
+  <img src="assets/figure_4_virtual_sensing.png" width="850">
+</p>
+
+<p align="center">
+  <b>Virtual sensing workflow for reconstructing missing or failed tower response channels.</b>
+</p>
 This repository accompanies the arXiv paper *Equation-Free Digital Twins
 for Nonlinear Structural Dynamics* (arXiv:2605.00950) by Mohammad Mahdi
 Abaei and co-authors. Its purpose is to provide a reproducible Python
