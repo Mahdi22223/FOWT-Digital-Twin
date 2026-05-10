@@ -18,7 +18,11 @@
   <b>Virtual sensing workflow for reconstructing missing or failed tower response channels.</b>
 </p>
 
+## Supplementary demonstration video
 
+[![Digital twin demonstration](assets/figure_2_concept.png)](assets/digital_twin_demo.mp4)
+
+A short MP4 demonstration of the time-resolved Hankel-DMD digital twin and missing/failed sensor reconstruction workflow.
 
 
 
