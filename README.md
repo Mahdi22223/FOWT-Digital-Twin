@@ -253,6 +253,8 @@ If you use this code in your research, please cite the associated paper:
 > Abaei, M. M., BahooToroody, A., Polojärvi, A., Remes, H., Tygesen, U. T.,
 > Suominen, M., and Beer, M. (2026). *Equation-Free Digital Twins for
 > Nonlinear Structural Dynamics*. arXiv:2605.00950.
+> [https://arxiv.org/abs/2605.00950](https://arxiv.org/abs/2605.00950)
+
 
 A `CITATION.cff` file is provided at the repository root for automated
 citation managers.
