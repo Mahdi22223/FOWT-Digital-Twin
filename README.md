@@ -18,7 +18,7 @@
 <p align="center">
   <b>Virtual sensing workflow for reconstructing missing or failed tower response channels.</b>
 </p>
-This repository accompanies the arXiv paper **_Equation-Free Digital Twins for Nonlinear Structural Dynamics_** (arXiv:2605.00950). Its purpose is to provide a reproducible Python implementation of the Hankel-DMD / Koopman-Hankel digital twin framework and the rolling-horizon virtual-sensing methodology developed for Offshore Floating Wind Turbine in the paper.
+This repository accompanies the arXiv paper **Equation-Free Digital Twins for Nonlinear Structural Dynamics** (arXiv:2605.00950). Its purpose is to provide a reproducible Python implementation of the Hankel-DMD / Koopman-Hankel digital twin framework and the rolling-horizon virtual-sensing methodology developed for Offshore Floating Wind Turbine in the paper.
 
 The central scientific contribution is the equation-free identification of structural modes from operational sensor data and the reconstruction of failed or never-installed tower sensors from the remaining channels, demonstrated on a floating offshore wind turbine. Everything in this repository is organised around making that contribution reproducible by independent users.
 
