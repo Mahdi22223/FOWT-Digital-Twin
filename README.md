@@ -20,11 +20,8 @@
 
 
 
-## Supplementary demonstration video
 
-A high-resolution demonstration video of the time-resolved Hankel-DMD digital twin and missing/failed sensor reconstruction workflow is available on Zenodo:
 
-[Supplementary demonstration video](https://doi.org/10.5281/zenodo.20110438)
 
 This repository accompanies the arXiv paper **_Equation-Free Digital Twins for Nonlinear Structural Dynamics_** (arXiv:2605.00950). Its purpose is to provide a reproducible Python implementation of the Hankel-DMD / Koopman-Hankel digital twin framework and the rolling-horizon virtual-sensing methodology developed for Offshore Floating Wind Turbine in the paper.
 
