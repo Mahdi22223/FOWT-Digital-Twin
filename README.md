@@ -7,7 +7,7 @@
 
 <p align="center">
   <b>Equation-free digital twin workflow for nonlinear floating offshore wind turbine dynamics.</b>
-</p>>
+</p>
 
 ## Missing/failed sensor reconstruction
 
