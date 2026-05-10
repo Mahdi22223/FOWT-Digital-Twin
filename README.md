@@ -18,7 +18,6 @@
   <b>Virtual sensing workflow for reconstructing missing or failed tower response channels.</b>
 </p>
 
-[![DOI](https://zenodo.org/badge/1151406257.svg)](https://doi.org/10.5281/zenodo.20110415)
 
 ## Supplementary demonstration video
 
