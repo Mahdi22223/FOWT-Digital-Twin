@@ -35,7 +35,7 @@ estimation of the predictability horizon. Those algorithms, and the
 documentation and tests that surround them, are the primary product of
 this repository.
 
-The OpenFAST automation under `scripts/openfast/` is auxiliary. It
+The OpenFAST automation under `scripts/openfast/` is auxiliary. The auxiliary OpenFAST case-generation and post-processing pipeline was developed for **OpenFAST v3.2.1**. Because OpenFAST input-file syntax and module settings may change across releases, users are advised to use OpenFAST v3.2.1 when reproducing the original simulation workflow, or to update the template files accordingly when using newer versions. It
 exists so that users who want to regenerate the underlying twelve-case
 simulation dataset from scratch can do so using the customised case
 templates this repository provides, but those scripts call out to a
