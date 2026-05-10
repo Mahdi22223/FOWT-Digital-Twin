@@ -1,0 +1,12 @@
+numpy
+pandas
+matplotlib
+scipy
+scikit-learn
+PyYAML
+pydmd
+seaborn
+openpyxl
+# Required only for OpenFAST generation/post-processing:
+# openfast_toolbox
+# pyFAST

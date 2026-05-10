@@ -1,0 +1,21 @@
+data_dir: data/full
+case_pattern: Case_*.csv
+dt: 0.0125
+filter:
+  low_cutoff_hz: 0.25
+  high_cutoff_hz: 5.0
+  order: 4
+hankel:
+  delay_d: 60
+  svd_rank: 34
+  tlsq_rank: 0
+  exact: true
+  opt: false
+missing_sensors: [0, 8]
+update_every_seconds: 1.0
+duration_seconds: 50
+train_case_count: 8
+outputs:
+  figures_dir: results/figures
+  tables_dir: results/tables
+  models_dir: results/models
