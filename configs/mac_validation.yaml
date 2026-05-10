@@ -1,0 +1,36 @@
+# MAC validation configuration.
+# Reproduces the comparison performed by the original MAC_Final.py without
+# relying on interactive workspace variables. Edit paths and targets to suit
+# your run setup.
+
+# OpenFAST linear modes exported by Modal_OutPut_Final_02.py.
+openfast_modes_xlsx: Extracted_Mode_Shapes.xlsx
+openfast_sheet: Tower_Modes
+
+# DMD mode CSVs produced by run_hankel_dmd.py.
+fa_dmd_csv: results/tables/fore_aft_dmd_modes.csv
+ss_dmd_csv: results/tables/side_to_side_dmd_modes.csv
+
+# SSI mode CSVs produced by run_ssi_cov.py.
+fa_ssi_csv: results/tables/fore_aft_ssi_modes.csv
+ss_ssi_csv: results/tables/side_to_side_ssi_modes.csv
+
+# Run both branches by default. Set to false to skip one.
+include_dmd: true
+include_ssi: true
+
+# Frequency tolerance for matching candidate columns to target modes (Hz).
+tolerance_hz: 0.9
+
+# Target modes from the original MAC_Final.py.
+fa_targets:
+  1st_Tower_Mode: {OF: 0.477, DMD: 0.541, SSI: 0.350}
+  2nd_Tower_Mode: {OF: 1.542, DMD: 1.674, SSI: 1.995}
+
+ss_targets:
+  1st_Tower_Mode: {OF: 0.477, DMD: 0.524, SSI: 0.638}
+  2nd_Tower_Mode: {OF: 2.000, DMD: 2.042, SSI: 2.054}
+
+outputs:
+  figures_dir: results/figures
+  tables_dir: results/tables

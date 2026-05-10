@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "equation-free-digital-twins"
+version = "0.1.0"
+description = "Reproducible code scaffold for equation-free Hankel-DMD digital twins for nonlinear structural dynamics."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{name = "M. M. Abaei"}]
+dependencies = [
+  "numpy", "pandas", "matplotlib", "scipy", "scikit-learn", "PyYAML", "pydmd", "seaborn", "openpyxl"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

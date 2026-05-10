@@ -1,0 +1,20 @@
+# Hankel-DMD identification settings used by the paper workflow.
+data_dir: data/full
+case_pattern: Case_*.csv
+dt: 0.0125
+filter:
+  low_cutoff_hz: 0.25
+  high_cutoff_hz: 5.0
+  order: 4
+hankel:
+  delay_d: 60
+  svd_rank: 24
+  tlsq_rank: 0
+  exact: true
+  opt: false
+directions: [fore_aft, side_to_side]
+frequency_window_hz: [0.3, 3.0]
+outputs:
+  figures_dir: results/figures
+  tables_dir: results/tables
+  models_dir: results/models

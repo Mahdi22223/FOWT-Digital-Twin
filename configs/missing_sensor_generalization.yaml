@@ -1,0 +1,97 @@
+# =============================================================================
+# Missing/failed sensor generalisation configuration.
+#
+# This file controls the runner at scripts/analysis/run_missing_sensor_generalization.py,
+# which reproduces the cross-case missing-sensor reconstruction experiment
+# from the original Missing_Sensor_Generalization_2 2.py script. Defaults
+# below match the original script exactly. Override on the command line
+# via --direction; everything else is set here so that the experiment is
+# reproducible and self-documenting.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Input data location.
+# Place the 12 OpenFAST-exported case CSV files at <data_dir> following the
+# Case_*.csv naming convention. The loader uses the integer in the filename
+# stem to sort cases numerically rather than lexicographically.
+# -----------------------------------------------------------------------------
+data_dir: data/full
+case_pattern: Case_*.csv
+
+# -----------------------------------------------------------------------------
+# Train/test split.
+# The original experiment fits the Hankel-DMD model on the first 8 cases
+# (train_case_count = 8) and reconstructs the missing sensors on the
+# remaining 4 cases. This is the configuration that produces the paper's
+# reported R-squared > 0.99 reconstruction accuracy on unseen wave-load
+# conditions.
+# -----------------------------------------------------------------------------
+train_case_count: 8
+
+# -----------------------------------------------------------------------------
+# Which sensors to mask.
+# The 18-channel state vector is laid out as [9 acceleration | 9 moment]
+# with the gauge ordering running from the lowest tower node (index 0,
+# 10 m above platform top) to the highest (index 8, 87.6 m). The default
+# (0, 8) masks the bottom and top acceleration gauges, which is the
+# experiment configuration reported in the paper. To mask moment channels
+# instead, use indices 9-17. To mask multiple channels of the same
+# physical sensor, list both its acceleration and moment indices.
+# -----------------------------------------------------------------------------
+missing_sensors: [0, 8]
+
+# -----------------------------------------------------------------------------
+# Rolling-horizon prediction parameters.
+# The pseudoinverse calibration is recomputed every <update_every_seconds>
+# of physical time using a fresh observation window of <hankel.delay_d>
+# samples. Between updates the model rolls forward through the
+# Vandermonde matrix of the DMD eigenvalues. Reducing update_every_seconds
+# tightens the reconstruction at the cost of more frequent recalibration.
+# -----------------------------------------------------------------------------
+update_every_seconds: 1.0
+duration_seconds: 50.0     # Quick-look window; raise to 300.0 to match the paper's full run.
+
+# -----------------------------------------------------------------------------
+# Sampling and band-pass preprocessing.
+# These are global parameters of the entire analysis pipeline. They appear
+# here as well so that the runner can be invoked standalone without
+# depending on the values inside hankel_dmd.yaml or virtual_sensing.yaml.
+# -----------------------------------------------------------------------------
+dt: 0.0125
+filter:
+  low_cutoff_hz: 0.25
+  high_cutoff_hz: 5.0
+  order: 4
+
+# -----------------------------------------------------------------------------
+# Hankel-DMD hyperparameters for the generalisation experiment.
+# Note that svd_rank is 34 here (intentionally higher than the
+# identification rank of 24 used in hankel_dmd.yaml). The original script
+# documented that this additional rank is needed to capture the modal
+# variability across the 12-case wave-load sweep without overfitting any
+# single training case. Hankel delay d = 60 matches the paper exactly.
+# -----------------------------------------------------------------------------
+hankel:
+  delay_d: 60
+  svd_rank: 34
+  opt: false
+
+# -----------------------------------------------------------------------------
+# Transient-trim length in samples per case.
+# OpenFAST runs need a brief settle-in interval before the floating
+# platform reaches its operational orbit. The original script removes
+# 1000 samples (12.5 s at dt = 0.0125 s) from each end of every case
+# before fitting. The default below matches the paper. Reduce only when
+# running on shorter datasets such as the synthetic sample.
+# -----------------------------------------------------------------------------
+trim_steps: 1000
+
+# -----------------------------------------------------------------------------
+# Where to write outputs.
+# Per-sensor accuracy metrics go to a CSV under tables_dir, comparison
+# plots (ground truth vs reconstruction) go to figures_dir. The runner
+# creates these directories if they do not exist.
+# -----------------------------------------------------------------------------
+outputs:
+  tables_dir: results/tables
+  figures_dir: results/figures

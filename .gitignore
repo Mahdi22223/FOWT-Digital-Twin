@@ -1,0 +1,126 @@
+# =============================================================================
+# .gitignore for the equation-free digital twin repository
+#
+# Policy: this repository hosts research source code, configuration files,
+# documentation, and lightweight customised OpenFAST templates. It does NOT
+# host OpenFAST executables, NREL distribution files, generated simulation
+# outputs, large wind fields, or full case datasets. Anything matching the
+# patterns below is excluded from version control. There is intentionally
+# no Git LFS routing for these patterns; if you find yourself needing to
+# commit a file that matches one of these rules, audit whether it really
+# belongs in the repository before relaxing the rule.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Python build, cache, and packaging artefacts
+# -----------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+.eggs/
+build/
+dist/
+.installed.cfg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+
+# -----------------------------------------------------------------------------
+# Virtual environments
+# -----------------------------------------------------------------------------
+.venv/
+.env/
+venv/
+env/
+
+# -----------------------------------------------------------------------------
+# Operating system and editor cruft
+# -----------------------------------------------------------------------------
+.DS_Store
+__MACOSX/
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+.ipynb_checkpoints/
+
+# -----------------------------------------------------------------------------
+# OpenFAST binaries and executables (not redistributed by this repository)
+# -----------------------------------------------------------------------------
+*.dll
+*.exe
+*.so
+*.dylib
+
+# -----------------------------------------------------------------------------
+# OpenFAST generated outputs (produced locally during simulation runs)
+# -----------------------------------------------------------------------------
+*.out
+*.outb
+*.lin
+*.ech
+*.sum
+*.vtk
+*.vtp
+*.vtm
+*.vtu
+
+# -----------------------------------------------------------------------------
+# Wind-field binaries and generated wind files (regenerated locally with TurbSim)
+# -----------------------------------------------------------------------------
+*.bts
+*.wnd
+*.hh
+*.coh
+
+# -----------------------------------------------------------------------------
+# OpenFAST baseline files (NREL distribution; obtain locally per
+# openfast/baseline/README.md instructions)
+# -----------------------------------------------------------------------------
+openfast/baseline/5MW_Baseline/
+
+# -----------------------------------------------------------------------------
+# OpenFAST simulation case directories produced by the case-generation runners
+# -----------------------------------------------------------------------------
+outputs/
+outputs_lin/
+outputs_lin_*/
+outputs - Org/
+outputs_*/
+
+# -----------------------------------------------------------------------------
+# Full case datasets (~500 MB; placed locally under data/full)
+# -----------------------------------------------------------------------------
+data/full/
+data/external/*
+!data/external/README.md
+
+# -----------------------------------------------------------------------------
+# Generated analysis artefacts (figures, tables, saved models)
+# Keep the directories themselves visible via .gitkeep placeholders so a
+# fresh checkout still has the expected output folders.
+# -----------------------------------------------------------------------------
+results/figures/*
+results/tables/*
+results/models/*
+!results/figures/.gitkeep
+!results/tables/.gitkeep
+!results/models/.gitkeep
+
+# -----------------------------------------------------------------------------
+# OpenFAST-generated mode shape Excel file (produced locally by
+# Modal_OutPut_Final_02.py from a linearization run; a sanitized example
+# can be committed under docs/examples/ if and only if it is small)
+# -----------------------------------------------------------------------------
+Extracted_Mode_Shapes.xlsx

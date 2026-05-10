@@ -1,0 +1,28 @@
+# Local paths must be edited for the user's OpenFAST installation.
+openfast_exe: C:/Simulations/openfast_x64.exe
+nonlinear_template_dir: openfast/templates/nonlinear
+linear_template_dir: openfast/templates/linear
+main_file: main.fst
+nonlinear_output_dir: outputs/parametric
+linear_output_dir: outputs_lin/parametric
+n_cores: 4
+base:
+  TMax: 3600
+  DT: 0.0125
+  DT_Out: 0.0125
+rotor:
+  rpm: 12
+  pitch_deg: 0
+wave_cases:
+  - {case: 1, Hs: 1.0, Tp: 6.0,  WaveDir: 0}
+  - {case: 2, Hs: 1.0, Tp: 9.0,  WaveDir: 45}
+  - {case: 3, Hs: 1.0, Tp: 12.0, WaveDir: 90}
+  - {case: 4, Hs: 2.0, Tp: 8.0,  WaveDir: 0}
+  - {case: 5, Hs: 2.0, Tp: 10.0, WaveDir: 45}
+  - {case: 6, Hs: 2.0, Tp: 14.0, WaveDir: 90}
+  - {case: 7, Hs: 3.0, Tp: 10.0, WaveDir: 0}
+  - {case: 8, Hs: 3.0, Tp: 12.0, WaveDir: 45}
+  - {case: 9, Hs: 3.0, Tp: 16.0, WaveDir: 90}
+  - {case: 10, Hs: 4.0, Tp: 9.0, WaveDir: 0}
+  - {case: 11, Hs: 4.0, Tp: 12.0, WaveDir: 45}
+  - {case: 12, Hs: 4.0, Tp: 20.0, WaveDir: 90}

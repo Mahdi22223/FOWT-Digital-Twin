@@ -1,0 +1,27 @@
+# Probabilistic mode-shape sweep configuration.
+# Reproduces the methodology of the original Probablistic_Mode_shape 2.py.
+# All numerical defaults match the original script.
+data_dir: data/full
+case_pattern: Case_*.csv
+dt: 0.0125
+filter:
+  low_cutoff_hz: 0.25
+  high_cutoff_hz: 5.0
+  order: 4
+# The original script uses svd_rank = 35 specifically for this sweep.
+# This differs from the identification rank (24) and the virtual-sensing rank (34).
+svd_rank: 35
+# Hankel delay values to sweep. The original used these exact 15 values.
+d_range: [10, 20, 30, 35, 40, 45, 50, 55, 57, 63, 65, 70, 75, 80, 90]
+# Convergence zone for collecting probabilistic shapes (mean +/- 95% CI).
+# The original uses d in [45, 75].
+convergence_d_min: 45
+convergence_d_max: 75
+selected_d: 60
+search_tol: 0.1
+directions:
+  - {name: fore_aft, target_freq: 0.54}
+  - {name: side_to_side, target_freq: 0.52}
+outputs:
+  figures_dir: results/figures
+  tables_dir: results/tables
