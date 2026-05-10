@@ -7,17 +7,7 @@
 
 <p align="center">
   <b>Equation-free digital twin workflow for nonlinear floating offshore wind turbine dynamics.</b>
-</p>
-
-## Live demonstration
-
-<p align="center">
-  <img src="assets/digital_twin_demo.gif" width="850">
-</p>
-
-<p align="center">
-  <b>Time-resolved Hankel-DMD reconstruction and virtual sensing demonstration.</b>
-</p>
+</p>>
 
 ## Missing/failed sensor reconstruction
 
