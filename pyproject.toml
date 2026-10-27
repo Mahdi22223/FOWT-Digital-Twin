@@ -3,15 +3,25 @@ requires = ["setuptools>=64", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "equation-free-digital-twins"
-version = "0.1.0"
-description = "Reproducible code scaffold for equation-free Hankel-DMD digital twins for nonlinear structural dynamics."
+name = "eftwin"
+version = "1.0.0rc1"
+description = "Equation-free Hankel-DMD (Koopman) models for operational modal analysis and virtual sensing of floating offshore wind turbines."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
+license = {text = "MIT"}
 authors = [{name = "M. M. Abaei"}]
-dependencies = [
-  "numpy", "pandas", "matplotlib", "scipy", "scikit-learn", "PyYAML", "pydmd", "seaborn", "openpyxl"
-]
+dependencies = ["numpy>=1.24", "scipy>=1.10", "pandas>=2.0", "matplotlib>=3.7", "scikit-learn>=1.2", "PyYAML>=6.0"]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+supplementary = ["nolds>=0.5"]
+simulation = ["openfast_toolbox"]
+
+[project.urls]
+Repository = "https://github.com/Mahdi22223/FOWT-Digital-Twin"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

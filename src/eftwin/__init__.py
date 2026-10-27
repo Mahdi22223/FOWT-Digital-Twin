@@ -1,48 +1,26 @@
-"""Equation-free digital twin utilities.
+"""eftwin: equation-free Hankel-DMD (Koopman) models for operational modal analysis and virtual sensing.
 
-This package contains the cleaned, reusable implementation of the methodology
-in the arXiv paper *Equation-Free Digital Twins for Nonlinear Structural
-Dynamics* (arXiv:2605.00950). The numerical procedures match the original
-research scripts that are preserved in ``legacy/``.
+The package is the reference implementation of the revised paper. Every routine reproduces the numerical
+convention used for the reported results; where the OpenFAST and FOCAL studies used different conventions
+(for example the SSI-COV pole selection), both are kept as explicitly named options.
 
-Modules:
-    constants            -- Default time step, filter cutoffs, tower heights,
-                            and OpenFAST channel-name helpers.
-    config               -- YAML loading and directory helpers.
-    preprocessing        -- Butterworth zero-phase band-pass filter.
-    data_io              -- Robust loading of OpenFAST-exported Case_*.csv files,
-                            including handling of duplicate column names.
-    hankel_dmd           -- Hankel-DMD identification (matches the original
-                            ``Filter_Hankel_03.py`` numerical core).
-    modal_analysis       -- Frequency, damping, mode-shape extraction, MAC
-                            functions (complex MAC and real-projected MAC).
-    virtual_sensing      -- Rolling-horizon virtual sensing and the
-                            train/test generalization workflow.
-    ssi_cov              -- SSI-COV identification and stabilization diagram.
-    noise_lyapunov       -- Hankel singular-value rank check and Rosenstein
-                            Lyapunov-exponent / prediction-horizon estimation.
-    probabilistic_modes  -- Hankel-delay sensitivity sweep producing mean
-                            mode shape plus 95% confidence band (matches
-                            ``Probablistic_Mode_shape 2.py``).
-    plotting             -- Matplotlib/Seaborn plotting helpers separated
-                            from the numerical algorithms.
-    openfast_pipeline    -- pyFAST/openfast-toolbox helpers for case
-                            generation, execution, and CSV export.
+Modules
+    io           OpenFAST case files and FOCAL Campaign IV runs
+    preprocess   band-pass filtering and standardisation
+    hankel       delay-embedded Gram sums and fold statistics (Hankel matrices are never formed)
+    dmd          exact Hankel-DMD from Gram sums, modal parameters, modal energy, pole picking
+    modal        MAC, MPC and mode-shape normalisation
+    estimators   the two realizations of the virtual sensor: Tikhonov projection and Kalman form
+    model        high-level API (fit a model, reconstruct hidden channels)
+    validation   time-blocked folds, sufficient statistics, cross-fitting, accuracy metrics
+    baselines    comparison methods: SSI-COV and FDD (identification); gappy POD, static least squares,
+                 Wiener filter (virtual sensing)
+    plotting     plotting style of the paper figures
 """
+__version__ = "1.0.0rc1"
 
-__version__ = "0.2.0"
+from .model import (HankelDMDModel, KalmanEstimator, ProjectionEstimator, fit_hankel_dmd,  # noqa: E402,F401
+                    identify_modes)
 
-__all__ = [
-    "constants",
-    "config",
-    "preprocessing",
-    "data_io",
-    "hankel_dmd",
-    "modal_analysis",
-    "virtual_sensing",
-    "ssi_cov",
-    "noise_lyapunov",
-    "probabilistic_modes",
-    "plotting",
-    "openfast_pipeline",
-]
+__all__ = ["HankelDMDModel", "fit_hankel_dmd", "identify_modes", "ProjectionEstimator", "KalmanEstimator",
+           "__version__"]

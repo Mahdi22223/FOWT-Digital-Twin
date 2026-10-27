@@ -75,8 +75,11 @@ should be updated to point at whichever filename you produce).
 Alternatively, the steady-wind input files
 `NRELOffshrBsline5MW_InflowWind_Steady8mps.dat` and
 `NRELOffshrBsline5MW_InflowWind_Steady12mps.dat` from the NREL baseline
-can be used for runs that do not require a turbulent inflow, including
-the linearization workflow.
+can be used for runs that do not require a turbulent inflow. The verified
+linearisation reference of the paper is 8 m/s; `scripts/simulation/openfast_cases.py`
+explicitly sets `HWindSpeed = 8.0`. The historical source deck used a filename
+containing `Steady12mps`, but the generated `.lin`/`.out` show that the actual
+linearisation condition was 8 m/s.
 
 ## OpenFAST executable
 
@@ -90,6 +93,6 @@ GitHub releases page at:
 https://github.com/OpenFAST/openfast/releases
 ```
 
-The version used in the paper's runs is OpenFAST 3.x; later versions are
-likely to be compatible but have not been independently tested for this
-codebase.
+The paper's runs used OpenFAST v3.2.1 (configuration table of the paper);
+later versions are likely to be compatible but have not been tested with
+these templates.

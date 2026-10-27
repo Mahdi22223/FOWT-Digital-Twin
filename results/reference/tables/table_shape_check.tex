@@ -1,0 +1,20 @@
+\begin{table}[htbp]
+\centering
+\caption{Check of the identified acceleration mode shapes against the kinematics of the simulation model.
+$R^2_{tower}$: least-squares fit with the two assumed tower modes of ElastoDyn only (fixed-base kinematics);
+$R^2_{+pl}$: fit with platform translation and rotation added; MAC with the assumed tower mode of the same
+order; share of platform rigid-body motion in the fitted shape. Gauge heights: ElastoDyn tower nodes 1, 3, 5, 7, 10, 13, 15, 17 and 20 of 20 (11.9--85.7~m).}
+\label{tab:shape_check}
+\footnotesize
+\begin{tabular}{l cccc cccc}
+\toprule
+ & \multicolumn{4}{c}{\textbf{Hankel-DMD}} & \multicolumn{4}{c}{\textbf{SSI-COV}}\\
+Mode & $R^2_{tower}$ & $R^2_{+pl}$ & MAC & platform (\%) & $R^2_{tower}$ & $R^2_{+pl}$ & MAC & platform (\%)\\
+\midrule
+Fore-aft 1st & 0.78 & 1.000 & 0.67 & 29 & 0.75 & 1.000 & 0.58 & 32\\
+Fore-aft 2nd & 0.99 & 1.000 & 1.00 & 1 & 0.99 & 1.000 & 1.00 & 1\\
+Side-to-side 1st & 0.75 & 1.000 & 0.55 & 34 & 0.75 & 1.000 & 0.55 & 34\\
+Side-to-side 2nd & 0.99 & 1.000 & 1.00 & 1 & 0.99 & 1.000 & 1.00 & 1\\
+\bottomrule
+\end{tabular}
+\end{table}

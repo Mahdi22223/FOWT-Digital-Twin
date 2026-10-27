@@ -1,0 +1,32 @@
+\begin{table}[htbp]
+\centering
+\caption{Modal identification from the FOCAL Campaign~IV basin tests (full scale; four runs with the same wind input and
+different wave realisations; four channels per direction; 0.25--5~Hz, platform modes 0.01--0.2~Hz) and comparison
+with published measurements on the same model. Hankel-DMD: medians [inter-quartile range] over $d\in\{43,86,129\}$
+and $r\in[10,50]$, the same delay windows in units of the first-mode period as in Table~\ref{tab:sys_id_comparison},
+applied to the output correlation functions (corr.) or to the response data (resp.). SSI-COV: medians over stabilised
+orders ($i=86$). FDD: peak of the first singular value. MAC between the de-standardised Hankel-DMD (corr.) and SSI-COV
+shapes.}
+\label{tab:focal_sysid}
+\footnotesize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l c cc cc cc c c}
+\toprule
+\textbf{Mode} & \textbf{FDD} & \multicolumn{2}{c}{\textbf{SSI-COV}} & \multicolumn{2}{c}{\textbf{Hankel-DMD (corr.)}} &
+\multicolumn{2}{c}{\textbf{Hankel-DMD (resp.)}} & \textbf{Published} & \textbf{MAC}\\
+ & $f$ (Hz) & $f$ (Hz) & $\zeta$ (\%) & $f$ (Hz) & $\zeta$ (\%) & $f$ (Hz) & $\zeta$ (\%) & $f$ (Hz) & DMD--SSI\\
+\midrule
+1st FA tower & 0.425 & 0.434 & 6.6 & 0.430 [0.428--0.431] & 3.9 [3.6--4.8] & 0.430 [0.425--0.449] & 1.8 [0.6--2.5] & 0.409$^{a}$ & 1.00\\
+1st SS tower & 0.410 & 0.414 & 1.8 & 0.415 [0.415--0.416] & 2.2 [1.7--2.3] & 0.414 [0.413--0.416] & 0.4 [0.2--0.5] & 0.425$^{a}$ & 1.00\\
+2nd FA / SS tower & \multicolumn{9}{c}{not identifiable from the available channels (Section~\ref{sec:focal_sysid})}\\
+\midrule
+3P (FA / SS) & 0.375 / 0.375 & 0.366 / 0.368 & 1.5 / 1.2 & 0.369 / 0.368 & 1.6 / 1.4 & 0.371 / 0.371 & 0.2 / 0.2 & 0.366$^{b}$ & 1.00 / 1.00\\
+Platform roll & 0.0320 & 0.0322 & 1.9 & 0.0321 [0.0321--0.0321] & 2.1 [2.1--2.1] & -- & -- & 0.0322--0.0323$^{c}$ & 1.00\\
+Platform pitch & 0.0290 & 0.0283 & 18.8 & 0.0281 [0.0263--0.0292] & 17.5 [15.1--21.0] & -- & -- & 0.0318--0.0325$^{c}$ & 1.00\\
+\bottomrule
+\end{tabular}}
+\par\smallskip\raggedright\scriptsize
+$^{a}$ Hammer tests of the floating system \cite{Fowler2023ISOPE}. $^{b}$ Three times the mean rotor frequency,
+$3\bar{\Omega}/2\pi$. $^{c}$ Free-decay tests, periods of 31.0--31.1~s (roll) and 30.8--31.4~s (pitch)
+\cite{Fowler2023ISOPE,Fowler2023FOCAL}; identified periods: roll 31.1~s, pitch 35.3--35.6~s.
+\end{table}

@@ -1,18 +1,20 @@
-name: equation-free-dt
+# conda env create -f environment.yml && conda activate eftwin
+# Tested with Python 3.13, numpy 2.5, scipy 1.18, pandas 3.0, matplotlib 3.11 and scikit-learn 1.9;
+# tests/test_revision_equivalence.py checks the numerics on other versions.
+name: eftwin
 channels:
   - conda-forge
 dependencies:
-  - python=3.10
+  - python>=3.10
   - numpy
+  - scipy
   - pandas
   - matplotlib
-  - scipy
   - scikit-learn
   - pyyaml
-  - seaborn
-  - openpyxl
+  - pytest
   - pip
   - pip:
-      - pydmd
-      # - openfast_toolbox
-      # - pyFAST
+      - -e .
+      # - nolds                # scripts/supplementary/lyapunov_surrogate.py
+      # - openfast_toolbox     # scripts/simulation/openfast_cases.py

@@ -1,9 +1,37 @@
 cff-version: 1.2.0
-title: "Equation-Free Digital Twins for Nonlinear Structural Dynamics"
+title: "eftwin: equation-free Hankel-DMD (Koopman) models for operational modal analysis and virtual sensing of floating offshore wind turbines"
 message: "If you use this code, please cite the associated paper."
+type: software
+version: "1.0.0rc1"
+license: MIT
+repository-code: "https://github.com/Mahdi22223/FOWT-Digital-Twin"
 authors:
   - family-names: "Abaei"
     given-names: "M. M."
 identifiers:
-  - type: arxiv
-    value: "2605.00950"
+  - type: doi
+    value: "10.5281/zenodo.20110415"
+    description: "Software archive on Zenodo"
+preferred-citation:
+  type: article
+  title: "Equation-Free Digital Twins for Nonlinear Structural Dynamics"
+  year: 2026
+  authors:
+    - family-names: "Abaei"
+      given-names: "M. M."
+    - family-names: "BahooToroody"
+      given-names: "A."
+    - family-names: "Polojärvi"
+      given-names: "A."
+    - family-names: "Remes"
+      given-names: "H."
+    - family-names: "Tygesen"
+      given-names: "U. T."
+    - family-names: "Suominen"
+      given-names: "M."
+    - family-names: "Beer"
+      given-names: "M."
+  identifiers:
+    - type: other
+      value: "arXiv:2605.00950"
+  url: "https://arxiv.org/abs/2605.00950"

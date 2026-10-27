@@ -1,0 +1,30 @@
+\begin{table}[htbp]
+\centering
+\caption{Modal identification from the 12 OLCs (native output interval $\Delta t=0.05$~s, 0.25--5~Hz) and
+comparison with the OpenFAST linearisation. Hankel-DMD: medians [inter-quartile range] over $d\in\{30,60,90\}$ and
+$r\in[10,50]$, applied to the output correlation functions (corr., Section~\ref{sec:stochastic_koopman}) or to the
+response data (resp.). SSI-COV: medians over model orders 20--80 ($i=60$), selecting at each order the admissible
+in-band pole with the largest mode-shape norm. FDD: peak of the first singular value.
+Linear: eigen-analysis of the linearised model (nearly stationary rotor, 0.18~rpm, 8~m/s steady inflow, still water, MAP++), modes
+tracked by their fore-aft/side-to-side energy and MAC. MAC: acceleration / bending-moment components of the
+de-standardised shapes.}
+\label{tab:sys_id_comparison}
+\footnotesize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l c cc cc cc cc cc}
+\toprule
+\textbf{Mode} & \textbf{FDD} & \multicolumn{2}{c}{\textbf{SSI-COV}} & \multicolumn{2}{c}{\textbf{Hankel-DMD (corr.)}} &
+\multicolumn{2}{c}{\textbf{Hankel-DMD (resp.)}} & \multicolumn{2}{c}{\textbf{Linear (OpenFAST)}} &
+\multicolumn{2}{c}{\textbf{MAC (acc / mom)}}\\
+ & $f$ (Hz) & $f$ (Hz) & $\zeta$ (\%) & $f$ (Hz) & $\zeta$ (\%) & $f$ (Hz) & $\zeta$ (\%) & $f$ (Hz) & $\zeta$ (\%) &
+DMD--SSI & DMD--Linear\\
+\midrule
+1st FA tower & 0.500 & 0.500 & 3.54 & 0.498 [0.497--0.499] & 3.26 [3.02--3.41] & 0.502 [0.496--0.519] & 0.80 [0.37--1.40] & 0.477 & 1.22 & 0.99 / 1.00 & 0.97 / 1.00\\
+1st SS tower & 0.510 & 0.514 & 1.19 & 0.514 [0.513--0.514] & 1.57 [1.49--1.73] & 0.516 [0.511--0.518] & 0.30 [0.14--0.72] & 0.494 & 0.70 & 1.00 / 1.00 & 1.00 / 1.00\\
+2nd FA tower & 3.720 & 3.714 & 1.31 & 3.712 [3.711--3.714] & 1.36 [1.29--1.45] & 3.698 [3.670--3.732] & 0.41 [0.27--0.61] & 3.711 & 1.09 & 1.00 / 1.00 & 1.00 / 1.00\\
+2nd SS tower & 3.600 & 3.596 & 2.17 & 3.598 [3.597--3.600] & 2.15 [2.08--2.30] & 3.610 [3.577--3.645] & 0.53 [0.35--0.68] & 3.811 & 1.87 & 1.00 / 1.00 & 1.00 / 0.99\\
+\midrule
+3P (FA / SS) & 0.58 / 0.57 & 0.583 / 0.589 & 7.5 / 7.9 & 0.582 / 0.602 & 6.9 / 6.1 & 0.605 / 0.601 & 1.1 / 1.8 & -- & -- & 0.98/0.98, 0.97/1.00 & --\\
+\bottomrule
+\end{tabular}}
+\end{table}
