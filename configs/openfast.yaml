@@ -1,0 +1,142 @@
+# OpenFAST study (paper Sections 3-4): NREL 5-MW OC3-Hywind, 12 operational load cases (OLCs).
+# Every value below is the one used for the reported results. Paths can be overridden with environment variables.
+
+paths:
+  csv_dir: ${EFTWIN_OPENFAST_DIR:-data/openfast}      # Case_1.csv ... Case_12.csv
+  lin_file: ${EFTWIN_LIN_FILE:-data/openfast/case_1.1.lin}
+  cache_dir: cache/openfast                           # .npz caches (not version-controlled)
+  results_dir: results/openfast                       # CSV/NPZ outputs (small files are version-controlled)
+
+data:
+  dt: 0.05                 # OpenFAST output interval DT_Out (s); the solver step DT = 0.0125 s is not used
+  trim: 6000               # samples discarded at the start of every record (300 s)
+  band: [0.25, 5.0]        # zero-phase 4th-order Butterworth band-pass (filtfilt), applied after trimming
+  filter_order: 4
+  cases:                   # OLC: [Hs (m), Tp (s), wave heading (deg)]; one TurbSim wind field for all
+    1: [1.0, 6.0, 0]
+    2: [1.0, 9.0, 45]
+    3: [1.0, 12.0, 90]
+    4: [2.0, 8.0, 0]
+    5: [2.0, 10.0, 45]
+    6: [2.0, 14.0, 90]
+    7: [3.0, 10.0, 0]
+    8: [3.0, 12.0, 45]
+    9: [3.0, 16.0, 90]
+    10: [4.0, 9.0, 0]
+    11: [4.0, 12.0, 45]
+    12: [4.0, 20.0, 90]
+
+identification:            # Table 3, Fig. A1, mode shapes
+  delays: [30, 60, 90]                 # samples (1.5-4.5 s)
+  ranks: {start: 10, stop: 52, step: 2}
+  bands:                               # pole of largest modal energy per band
+    FA: {1st: [0.45, 0.56], 2nd: [3.40, 3.95], 3P: [0.57, 0.66]}
+    SS: {1st: [0.47, 0.56], 2nd: [3.40, 3.95], 3P: [0.57, 0.66]}
+  reference: {delay: 60, rank: 24}     # shapes for the MACs of Table 3 and the per-OLC tracking
+  correlation_lags: 400                # correlation-domain DMD: R_k, k = 1..400 (20 s)
+  ssi: {block_rows: 60, orders: {start: 20, stop: 82, step: 2}, per_olc_orders: {start: 30, stop: 72, step: 4},
+        max_damping: 0.2}              # selection: median over orders (no stabilisation criterion), see docs/open_items.md
+  fdd_segment_s: 100
+
+shape_check:               # Table A (shape_check): identified shapes vs ElastoDyn kinematics
+  gauge_nodes: [1, 3, 5, 7, 10, 13, 15, 17, 20]   # TwrGagNd; see docs/open_items.md (heights used for the table)
+  tower_base: 10.0
+  tower_top: 87.6
+  tower_nodes: 20
+  assumed_modes:           # ElastoDyn tower file: coefficients of x^2..x^6 of the 1st and 2nd assumed modes
+    FA: [[0.8689, 0.2205, -0.0908, 0.1167, -0.1154], [42.5859, -18.6419, -20.357, -23.2686, 20.6816]]
+    SS: [[0.834, 0.2216, -0.0571, 0.0934, -0.0918], [60.2285, -27.5868, -30.3887, -33.6738, 32.4208]]
+
+virtual_sensing:           # Sections 4.4-4.8, Tables 4-5, A2-A4, Figs. 8-13
+  delay: 60                # 3 s
+  half: 33000              # samples per time half (1650 s)
+  score_start: 1200        # first 60 s of every test half are not scored
+  projection_ranks: [24, 34, 50, 70, 90, 120]
+  alphas: [0.001, 0.003, 0.01, 0.03]
+  kalman_ranks: [34, 50, 70, 90, 120]
+  wiener_rhos: [1.0e-06, 1.0e-04, 1.0e-02]
+  gappy_pod_max_modes: 5
+  forecast_leads: [5, 10, 20, 40, 80]  # samples (0.25-4 s)
+  forecast_layouts: [l1, l2, case_bc]
+  crossfit_group_b: [7, 8, 9, 10, 11, 12]     # OLC 1-6 use settings selected on OLC 7-12 and vice versa (per q)
+  layouts:
+    # Six random layouts per q (seed 1, numpy default_rng, drawn in this order); "l1" is the first of them.
+    random:
+      - [8]
+      - [9]
+      - [13]
+      - [17]
+      - [0]
+      - [2]
+      - [13, 17]
+      - [5, 15]
+      - [4, 14]
+      - [6, 11]
+      - [0, 1]
+      - [12, 15]
+      - [5, 8, 13]
+      - [2, 4, 8]
+      - [6, 16, 17]
+      - [0, 4, 13]
+      - [2, 7, 8]
+      - [1, 13, 15]
+      - [2, 4, 12, 13]
+      - [1, 4, 7, 17]
+      - [5, 9, 13, 16]
+      - [6, 7, 13, 16]
+      - [3, 10, 11, 13]
+      - [8, 9, 12, 17]
+      - [0, 1, 2, 8, 12, 13]
+      - [1, 2, 3, 5, 7, 10]
+      - [0, 4, 6, 9, 15, 16]
+      - [3, 4, 7, 10, 12, 13]
+      - [0, 2, 5, 7, 11, 16]
+      - [0, 6, 7, 10, 15, 17]
+      - [2, 3, 5, 8, 9, 10, 12, 13, 14]
+      - [0, 2, 3, 6, 8, 9, 14, 16, 17]
+      - [0, 2, 4, 7, 9, 13, 14, 15, 16]
+      - [1, 2, 3, 4, 5, 9, 12, 13, 16]
+      - [0, 1, 4, 6, 7, 10, 11, 15, 16]
+      - [0, 1, 2, 3, 5, 7, 10, 13, 17]
+      - [0, 1, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 17]
+      - [1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15, 16, 17]
+      - [0, 3, 4, 5, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17]
+      - [0, 2, 3, 5, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17]
+      - [2, 3, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17]
+      - [0, 1, 2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 16, 17]
+    case_a: [0, 1, 4, 6, 8, 9, 10, 13, 15, 17]          # hidden 2, 3, 5, 7, 11, 12, 14, 16
+    case_bc: [1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15, 16]   # hidden 0, 8, 9, 17
+    l1: [8]                                               # nacelle accelerometer
+    l2: [8, 9]                                            # nacelle accelerometer + tower-base moment
+  scenarios:               # Table 4
+    - {name: Case A, layout: case_a, test: 5}
+    - {name: Case B, layout: case_bc, test: 7}
+    - {name: Case C, layout: case_bc, test: 2}
+  practical_layouts:       # Table 5 rows L1, L2
+    - {name: L1 nacelle acc., layout: l1}
+    - {name: L2 nacelle acc. + base moment, layout: l2}
+
+robustness:                # Table A4 (pre-declared tests, hyper-parameters fixed to the main study)
+  max_q: 3                 # random layouts with q <= 3, plus layout l2
+  extra_layouts: [l2]
+  t1_case: 5               # T1: first samples of the first half of one OLC
+  t1_samples: 12000        # 600 s
+  t2_groups: [[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12]]   # T2: Hs 1-2 m <-> Hs 3-4 m
+  noise_level: 0.05        # T3: white noise, fraction of each channel's standard deviation
+  noise_seed: 11
+
+excerpts:                  # time series for Figs. 8 and 13 (second half of the test OLC)
+  start: 6000              # samples after the scored start (300 s)
+  length: 2400             # 120 s
+  jobs:
+    - {name: Case A, layout: case_a, test: 5}
+    - {name: Case B, layout: case_bc, test: 7}
+    - {name: Case C, layout: case_bc, test: 2}
+    - {name: L1 nacelle acc., layout: l1, test: 7}
+
+figures:
+  output_dir: results/figures
+  fig5: {delays: {start: 30, stop: 91, step: 10}, rank: 35, target_hz: {FA: 0.50, SS: 0.51}, search_hz: 0.1,
+         chunk: 15000}
+  fig6_7: {rank: 24}
+  fig11_first_mode: {FA: [0.498, 0.0326], SS: [0.514, 0.0157]}   # f (Hz), zeta: correlation-domain values of Table 3

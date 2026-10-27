@@ -1,0 +1,30 @@
+\begin{table}[htbp]
+\centering
+\caption{Reconstruction from the nacelle accelerometer alone (layout L1): $R^2$ of selected hidden channels
+(median over the 12 held-out OLCs, time-blocked protocol). Sensors 0--7: accelerations, 9--17: bending
+moments, numbered from the tower base; the node of the first coupled mode lies between sensors 4 and 5.}
+\label{tab:vs_l1_channels}
+\footnotesize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{ll ccccccccccc}
+\toprule
+Dir. & Estimator & 0 & 2 & 3 & 4 & 5 & 6 & 7 & 9 & 13 & 16 & 17\\
+\midrule
+FA & \textit{Baselines} &  &  &  &  &  &  &  &  &  &  & \\
+ & \quad Gappy POD & 0.90 & 0.50 & 0.07 & $-0.04$ & 0.11 & 0.29 & 0.58 & 0.90 & 0.84 & 0.50 & $-0.04$\\
+ & \quad Static least squares & 0.90 & 0.54 & 0.12 & 0.01 & 0.15 & 0.32 & 0.60 & 0.91 & 0.85 & 0.54 & $-0.01$\\
+ & \quad Wiener filter (per layout) & 0.95 & 0.95 & 0.92 & 0.90 & 0.91 & 0.93 & 0.96 & 0.96 & 0.96 & 0.80 & 0.22\\
+ & \textit{Hankel-DMD} &  &  &  &  &  &  &  &  &  &  & \\
+ & \quad Projection & 0.87 & 0.88 & 0.84 & 0.82 & 0.83 & 0.86 & 0.92 & 0.89 & 0.87 & 0.56 & $-0.17$\\
+ & \quad Kalman form (stochastic extension) & 0.96 & 0.94 & 0.90 & 0.88 & 0.89 & 0.91 & 0.95 & 0.97 & 0.98 & 0.83 & 0.27\\
+\midrule
+SS & \textit{Baselines} &  &  &  &  &  &  &  &  &  &  & \\
+ & \quad Gappy POD & 0.71 & 0.77 & 0.60 & 0.09 & 0.11 & 0.49 & 0.83 & 0.94 & 0.93 & 0.89 & 0.65\\
+ & \quad Static least squares & 0.71 & 0.78 & 0.61 & 0.11 & 0.12 & 0.50 & 0.84 & 0.94 & 0.93 & 0.90 & 0.66\\
+ & \quad Wiener filter (per layout) & 0.74 & 0.88 & 0.90 & 0.91 & 0.94 & 0.97 & 0.99 & 0.99 & 0.99 & 0.98 & 0.86\\
+ & \textit{Hankel-DMD} &  &  &  &  &  &  &  &  &  &  & \\
+ & \quad Projection & 0.67 & 0.84 & 0.85 & 0.83 & 0.86 & 0.92 & 0.98 & 0.96 & 0.96 & 0.93 & 0.65\\
+ & \quad Kalman form (stochastic extension) & 0.73 & 0.87 & 0.89 & 0.86 & 0.89 & 0.94 & 0.98 & 0.99 & 0.99 & 0.98 & 0.86\\
+\bottomrule
+\end{tabular}}
+\end{table}

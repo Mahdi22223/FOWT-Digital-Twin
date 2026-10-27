@@ -1,0 +1,83 @@
+# FOCAL Campaign IV basin tests (paper Section 5): 1:70 IEA 15-MW / VolturnUS-S, full-scale units.
+# Every value below is the one used for the reported results.
+
+paths:
+  csv_dir: ${EFTWIN_FOCAL_DIR:-data/focal}     # FOCAL_DLC12_Seed1_3.csv, ..._Seed3_1, ..._Seed4_1, ..._Seed5_1
+  cache_dir: cache/focal
+  results_dir: results/focal
+
+data:
+  t0: 600.0                # stationary window (full-scale s), identical for all runs
+  t1: 9000.0
+  band: [0.25, 5.0]        # same analysis band as the OpenFAST study (filtfilt)
+
+identification:            # Table 6
+  delays: [43, 86, 129]                # 0.75-2.2 first-mode periods, as d = 30-90 in the OpenFAST study
+  ranks: {start: 10, stop: 52, step: 2}
+  reference_rank: 40                   # shapes and MACs at d = 86, r = 40
+  bands:
+    FA: {Tower 1st: [0.40, 0.46], 3P: [0.35, 0.385]}
+    SS: {Tower 1st: [0.40, 0.44], 3P: [0.35, 0.385]}
+  correlation_s: 20                    # correlation lags (s)
+  ssi_block_rows: 86
+  ssi_orders: {start: 20, stop: 82, step: 2}
+  fdd_segment_s: 200
+  platform:                            # platform roll (SS channels) and pitch (FA channels), low band
+    decimate: 8
+    lowpass_hz: 1.0
+    band: [0.01, 0.2]
+    bands: {SS: {Platform roll: [0.025, 0.040]}, FA: {Platform pitch: [0.022, 0.040]}}
+    delays_s: [15, 30, 45]
+    ranks: {start: 8, stop: 30, step: 2}
+    correlation_s: 300
+    ssi_block_rows_s: 30
+    fdd_segment_s: 1000
+  rotor_check: {block_s: 200, harmonic_band_3P: [0.34, 0.39]}
+
+wideband:                  # Section 5.2, Fig. 14, second tower modes
+  scan_band: [0.2, 11.0]
+  id_band: [0.25, 10.0]
+  id_delay: 86
+  id_ranks: {start: 10, stop: 82, step: 2}
+  id_ssi_orders: {start: 20, stop: 122, step: 4}
+  block_s: 200
+  candidates:
+    FA: [[0.40, 0.46, 1st tower], [1.55, 2.05, 1.5-2.0 band], [3.6, 4.4, ~4 Hz], [9.4, 10.0, ~9.8 Hz]]
+    SS: [[0.39, 0.44, 1st tower], [1.33, 1.43, 1.38 Hz], [3.6, 4.4, ~4 Hz], [8.4, 9.0, ~8.7 Hz], [9.4, 10.0, ~9.8 Hz]]
+
+virtual_sensing:           # Section 5.3, Table 7, Figs. 15-16
+  delay: 86                # 3.6 s = 1.5 first-mode periods (d = 60 in the OpenFAST study)
+  score_start_s: 60
+  # projection grid: base grid of the simulation study plus the extension (alpha <= 1, r = 160 and 250)
+  projection_grid:
+    - {ranks: [24, 34, 50, 70, 90, 120], alphas: [0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1.0]}
+    - {ranks: [160, 250], alphas: [0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1.0]}
+  kalman_ranks: [34, 50, 70, 90, 120, 160, 200, 250]
+  wiener_rhos: [1.0e-06, 1.0e-04, 1.0e-02]
+  gappy_pod_max_modes: 5
+  crossfit_group_b: [E14, E15]           # runs E11/E13 use settings selected on E14/E15 and vice versa (per layout)
+  layouts:                 # channels: 0 nacelle acc., 1 tower-base (platform) acc., 2 tower-top moment, 3 tower-base moment
+    N: [0]
+    N+Bacc: [0, 1]
+    N+Bmom: [0, 3]           # computed, not reported in Table 7
+    N+Bacc+Bmom: [0, 1, 3]
+    loo1: [0, 2, 3]
+    loo0: [1, 2, 3]
+    loo3: [0, 1, 2]
+  series: {run: FOCAL_DLC12_Seed1_3, half: 1, layouts: [N, N+Bacc]}   # Figs. 15-16 (run E11, second half)
+
+coherence_bound:           # Table 7 bound and spectral composition (Section 5.3)
+  segment_s: 100
+  band: [0.25, 5.0]
+  rotor_1p_hz: 0.1235      # harmonic windows n * 0.1235 Hz +- 0.03 Hz (n = 3, 6, 9, 12); see docs/open_items.md
+  harmonic_halfwidth_hz: 0.03
+  tower_hz: {FA: 0.430, SS: 0.415}
+  high_band_hz: 2.0
+
+figures:
+  output_dir: results/figures
+  rotor_3p_hz: 0.366       # 3 x mean rotor frequency (Table 6, note b); harmonics in Fig. 14 at n * 0.366 / 3
+  hammer_hz: {FA: 0.409, SS: 0.425}      # Fowler et al. (ISOPE 2023)
+  fig14: {zoom_hz: [0.40, 0.44], xlim: [0.25, 10.0], ylim: [0.01, 3.2]}
+  fig15: {t0: 60.0, span_s: 1500.0, window_s: 60.0, fmax: 1.3}
+  fig16: {t_start: 1500.0, duration_s: 40.0, panels: [[FA, N], [SS, N], [FA, N+Bacc]]}

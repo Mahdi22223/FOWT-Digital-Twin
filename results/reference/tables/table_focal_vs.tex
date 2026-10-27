@@ -1,0 +1,37 @@
+\begin{table}[htbp]
+\centering
+\caption{Virtual sensing on the FOCAL Campaign~IV basin tests: $R^2$ of the hidden channels against the measured
+signals (median over the four held-out runs; time-blocked leave-one-run-out, hyper-parameters cross-fitted between run
+pairs; 0.25--5~Hz). Active sensors: N, nacelle (tower-top) accelerometer; P, platform accelerometer at the tower base.
+Hidden channels: a$_N$, a$_P$, nacelle and platform acceleration; M$_T$, M$_B$, tower-top and tower-base bending moment.
+Coherence bound: fraction of the variance of the hidden channel that is linearly coherent with the active channels
+(multiple coherence of the measured data), an upper limit for any linear estimator.}
+\label{tab:focal_vs}
+\footnotesize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{ll cc cc cccc}
+\toprule
+ & & \multicolumn{2}{c}{N} & \multicolumn{2}{c}{N + P} & \multicolumn{4}{c}{Three of four sensors}\\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-10}
+Dir. & Estimator & M$_T$ & M$_B$ & M$_T$ & M$_B$ & a$_N$ & a$_P$ & M$_T$ & M$_B$\\
+\midrule
+FA & \textit{Baselines} & & & & & & & & \\
+ & \quad Gappy POD & $<\!-1$ & $<\!-1$ & $-0.25$ & $-0.32$ & $-0.42$ & $<\!-1$ & $<\!-1$ & $-0.26$\\
+ & \quad Static least squares & 0.03 & 0.10 & 0.15 & 0.17 & 0.17 & 0.16 & 0.19 & 0.20\\
+ & \quad Wiener filter (per layout) & 0.48 & 0.58 & 0.62 & 0.80 & 0.30 & 0.53 & 0.82 & 0.87\\
+ & \textit{Hankel-DMD} & & & & & & & & \\
+ & \quad Projection & 0.39 & 0.40 & 0.48 & 0.75 & 0.22 & 0.46 & 0.58 & 0.84\\
+ & \quad Kalman form (stochastic extension) & 0.48 & 0.69 & 0.60 & 0.83 & 0.30 & 0.52 & 0.80 & 0.88\\
+ & \textit{Coherence bound} & \textit{0.69} & \textit{0.80} & \textit{0.79} & \textit{0.91} & \textit{0.33} & \textit{0.53} & \textit{0.92} & \textit{0.94}\\
+\midrule
+SS & \textit{Baselines} & & & & & & & & \\
+ & \quad Gappy POD & $<\!-1$ & $<\!-1$ & $<\!-1$ & $<\!-1$ & $<\!-1$ & $<\!-1$ & 0.40 & 0.45\\
+ & \quad Static least squares & 0.00 & 0.06 & 0.04 & 0.08 & 0.13 & 0.04 & 0.50 & 0.53\\
+ & \quad Wiener filter (per layout) & 0.34 & 0.49 & 0.42 & 0.55 & 0.21 & 0.13 & 0.82 & 0.86\\
+ & \textit{Hankel-DMD} & & & & & & & & \\
+ & \quad Projection & 0.28 & 0.44 & 0.34 & 0.49 & 0.15 & 0.06 & 0.67 & 0.83\\
+ & \quad Kalman form (stochastic extension) & 0.43 & 0.56 & 0.50 & 0.62 & 0.21 & 0.13 & 0.83 & 0.89\\
+ & \textit{Coherence bound} & \textit{0.61} & \textit{0.74} & \textit{0.68} & \textit{0.78} & \textit{0.25} & \textit{0.15} & \textit{0.90} & \textit{0.94}\\
+\bottomrule
+\end{tabular}}
+\end{table}

@@ -3,7 +3,7 @@ FAST Certification Test #24: NREL 5.0 MW Baseline Wind Turbine with OC3 Hywind C
 ---------------------- SIMULATION CONTROL --------------------------------------
 True          Echo            - Echo input data to <RootName>.ech (flag)
 "FATAL"       AbortLevel      - Error level when simulation should abort (string) {"WARNING", "SEVERE", "FATAL"}
-        10    TMax            - Total run time (s)
+       100    TMax            - Total run time (s)
      0.0125   DT              - Recommended module time step (s)
           1   InterpOrder     - Interpolation order for input/output time history (-) {1=linear, 2=quadratic}
           0   NumCrctn        - Number of correction iterations (-) {0=explicit calculation, i.e., no corrections}
@@ -45,7 +45,7 @@ True          Echo            - Echo input data to <RootName>.ech (flag)
 True          SumPrint        - Print summary data to "<RootName>.sum" (flag)
           1   SttsTime        - Amount of time between screen status messages (s)
       99999   ChkptTime       - Amount of time between creating checkpoint files for potential restart (s)
-     0.0125   DT_Out          - Time step for tabular output (s) (or "default")
+       0.05   DT_Out          - Time step for tabular output (s) (or "default")
           0   TStart          - Time to begin tabular output (s)
           0   OutFileFmt      - Format for tabular (time-marching) output file (switch) {0: uncompressed binary [<RootName>.outb], 1: text file [<RootName>.out], 2: binary file [<RootName>.outb], 3: both 1 and 2}
 True          TabDelim        - Use tab delimiters in text tabular output file? (flag) {uses spaces if false}
