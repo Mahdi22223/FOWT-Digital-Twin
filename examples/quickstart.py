@@ -16,7 +16,7 @@ modes = ((0.5, 0.02), (1.6, 0.02), (3.7, 0.015))                 # true (frequen
 train = [tower_response(6000, dt, modes, seed=s)[0] for s in (1, 2, 3)]    # three records, 6 channels each
 test, _ = tower_response(6000, dt, modes, seed=4)
 
-# 1) identification (each record a separate segment; correlation domain gives unbiased damping)
+# 1) identification (each record a separate segment; correlation domain is used for damping estimation)
 f, zeta, E, mu, _ = identify_modes(train, d=60, r=10, dt=dt, lags=400)
 for lo, hi in ((0.3, 0.8), (1.2, 2.0), (3.0, 4.5)):
     m = np.where((mu.imag > 0) & (f > lo) & (f < hi))[0]

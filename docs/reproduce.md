@@ -84,5 +84,4 @@ checked against outputs of that code (`tests/test_revision_equivalence.py`). In 
 (all steps above, both studies) were run side by side with the revision scripts on synthetic data in the format of
 the OpenFAST and FOCAL files (shorter records, set in the configurations; algorithms unchanged): all 59 outputs were
 identical (CSV values, NPZ arrays and per-fold records exactly, LaTeX tables byte for byte, figures pixel for pixel),
-as were the printed results of the scripts without file output. Conventions that differ between the two studies
-are listed in `docs/method.md`; open points in `docs/open_items.md`.
+as were the printed results of the scripts without file output. Conventions that differ between the two studies are documented in `docs/method.md`.

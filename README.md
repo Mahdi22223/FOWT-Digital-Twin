@@ -5,7 +5,7 @@ Reference implementation of the paper *Equation-Free Digital Twins for Nonlinear
 operator, identified offline from delay-embedded measurements, provides
 
 * **operational modal parameters**: tower frequencies, damping ratios and mode shapes (correlation-domain
-  identification for unbiased damping), and
+  identification for damping estimation), and
 * **virtual sensing**: reconstruction of unmeasured channels for any pattern of failed sensors without retraining,
   by a Tikhonov-regularised projection (the estimator of the framework) or its Kalman form (stochastic extension).
 
@@ -78,9 +78,8 @@ is authoritative; the historical InflowWind filename containing `Steady12mps` is
 The implementation reproduces the finalized revision code: unit-level against its outputs
 (`tests/test_revision_equivalence.py`) and end to end, where both pipelines gave identical tables, figures and
 intermediate files on synthetic data ([docs/reproduce.md](docs/reproduce.md)). Where the two studies used different
-conventions (for example the SSI-COV pole selection), both are kept as named options
-([docs/method.md](docs/method.md)). Points that still need a decision or a rerun on the raw data are listed in
-[docs/open_items.md](docs/open_items.md).
+conventions (for example the SSI-COV pole selection), both are kept as named options and documented in
+[docs/method.md](docs/method.md).
 
 ## Original submission
 

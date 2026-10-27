@@ -80,7 +80,7 @@ Table 7 is `coherence_bound`.
 
 The two studies were run with slightly different conventions. Each is kept as it was used, behind a named option,
 so that every reported number is reproduced; none is changed for uniformity. Changing one would change the
-corresponding numbers and requires a rerun on the raw data (see `docs/open_items.md`).
+corresponding numerical results.
 
 | Item | OpenFAST (Table 3, Figs. 5-7, A1) | FOCAL (Table 6, Fig. 14) |
 |---|---|---|

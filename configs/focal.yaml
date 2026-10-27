@@ -69,7 +69,7 @@ virtual_sensing:           # Section 5.3, Table 7, Figs. 15-16
 coherence_bound:           # Table 7 bound and spectral composition (Section 5.3)
   segment_s: 100
   band: [0.25, 5.0]
-  rotor_1p_hz: 0.1235      # harmonic windows n * 0.1235 Hz +- 0.03 Hz (n = 3, 6, 9, 12); see docs/open_items.md
+  rotor_1p_hz: 0.1235      # harmonic-window reference used by the saved analysis
   harmonic_halfwidth_hz: 0.03
   tower_hz: {FA: 0.430, SS: 0.415}
   high_band_hz: 2.0
